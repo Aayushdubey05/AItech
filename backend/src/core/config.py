@@ -19,12 +19,17 @@ class Settings:
     POSTGRES_HOST : str = os.getenv("POSTGRES_HOST")
     POSTGRES_PORT : str = os.getenv("POSTGRES_PORT")
     DATABASE_URL : str = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
+    SECRET_KEY : str = os.getenv("SECRET_KEY")
+    ALGORITHM : str = os.getenv("ALGORITHM")
     # database connection
 
 settings = Settings()
-print(settings.ProjectName)
 print(settings.DATABASE_URL)
 
+
+
+##  whenever we run code in src make Path = 'backend' and when we run code in backend/main.py make Path = '.
+#### ---> now make it work through dot only and not through path
 
 
 
