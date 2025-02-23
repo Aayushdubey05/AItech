@@ -3,7 +3,7 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 #defining the Schema for user signup
-from models.user import user 
+from models.user import User
 from db.session import engine
 from pydantic import BaseModel, EmailStr 
 from core.config import settings

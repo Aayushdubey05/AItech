@@ -18,10 +18,7 @@ class User(Base):
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True, index=True)
-    Name = Column(String)
-    Email = Column(String, unique=True, index=True)
-    Password = Column(String)
-    Mobile = Column(String)
-
-
-user = User()
+    name = Column(String, nullable=False)   # Change Name → name
+    email = Column(String, unique=True, index=True, nullable=False)
+    password = Column(String, nullable=False)  # Change Password → password
+    mobile = Column(String, nullable=False)
