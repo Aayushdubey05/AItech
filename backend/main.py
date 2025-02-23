@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from src.core.config import settings
 from src.db.session import engine
 from src.db.base import Base 
-from src.api.create import router as signup_router # ✅ Import signup router
+from src.api.create import router as signup_router# ✅ Import signup router
 import uvicorn
 
 def create_tables():
@@ -15,7 +15,7 @@ def start_application():
     create_tables()
 
     # Include all API routers
-    app.include_router(signup_router, prefix="/api", tags=["Signup"])  # ✅ Added router
+    app.include_router(signup_router)  # ✅ Added router
 
     return app
 
