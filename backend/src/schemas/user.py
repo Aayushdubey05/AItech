@@ -15,3 +15,10 @@ class UserCreation(BaseModel):
     Mobile: str
     class Config:
         orm_mode = True
+
+class UserResponse(BaseModel):
+    Name: str
+    Email: EmailStr
+    Mobile: str
+    class Config:
+        orm_mode = True
