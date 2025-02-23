@@ -24,7 +24,7 @@ class Settings:
     # database connection
 
 settings = Settings()
-print(settings.DATABASE_URL)
+# print(settings.DATABASE_URL)
 
 
 
