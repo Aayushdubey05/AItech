@@ -22,3 +22,9 @@ class UserResponse(BaseModel):
     Mobile: str
     class Config:
         orm_mode = True
+
+class UserLogin(BaseModel):
+    Email: EmailStr
+    Password: str
+    class Config:
+        orm_mode = True
