@@ -3,6 +3,7 @@ import os
 import sys 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+# import logging
 from db.session import engine, get_db
 from core.config import settings
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
@@ -12,17 +13,31 @@ import jwt #Avoid this underline problem its an glitch in the editor
 
 ## Will call this to apply SHA256 on password and this will return the hashed password to store in database
 ## Will not save this on redis type DB
-## it is going to be used when user will signup 
+## it is going to be used when user will signup
+
+
+# logging.basicConfig(level=logging.DEBUG)
 def hashingofpassword(password: str):
     salt = bcrypt.gensalt()
     hashedpassword = bcrypt.hashpw(password.encode('utf-8'), salt)
-    return hashedpassword
+    return hashedpassword.decode('utf-8')
 
 ## it is going to be used when user will login and will compare the password with the hashed password
 def verify_password(hashedPassword: str, password: str) -> bool:
-    return bcrypt.checkpw(password.encode('utf-8'), hashedPassword)
+    #did it just for testing 
+    # logging.debug(f"Hashed Password: {hashedPassword}")
+    # logging.debug(f"Password: {password}")
 
+    if isinstance(hashedPassword, str):
+        hashedPassword = hashedPassword.encode('utf-8')
 
+    try:
+        return bcrypt.checkpw(password.encode('utf-8'), hashedPassword)
+    except ValueError as e:
+        # logging.error(f"Error verifying password: {e}")
+        return False
+
+## logging will be just used 
 ## Will call this to generate the jSON web token 
 
 def create_jwt_token(email: EmailStr, username: str):
