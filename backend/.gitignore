@@ -2,3 +2,4 @@ __pycache__/
 .env
 src/core/jwtsceret.py
 database_jobportal.sql 
+src/cloud_service_api.json
