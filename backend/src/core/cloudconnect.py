@@ -10,14 +10,21 @@ gcp_project_id = os.getenv("GCP_PROJECT_ID")
 bucket_name = os.getenv("BUCKET_NAME")
 service_account_file = os.getenv("SERVICE_ACCOUNT_FILE_PATH")
 
-def create_gcs_bucket(gcp_project_id,bucket_name,service_account_file):
-    created = False
-    try:
-        client = storage.Client.from_service_account_json(service_account_file)
-        bucket = client.create_bucket(bucket_name)
-        print(f"Bucket name: {bucket} created successfully ")
-        created = True
-    except Exception as e:
-        print(f"Error Creation Buckets: {str(e)}")
+class create_gcp_bucket:
 
-create_gcs_bucket(gcp_project_id,bucket_name,service_account_file)
+    def __init__(self,gcp_project_id):
+        self.gcp_project_id = gcp_project_id
+
+    def create_gcs_bucket(self,bucket_name,service_account_file):
+        created = False
+        try:
+            client = storage.Client.from_service_account_json(service_account_file)
+            bucket = client.create_bucket(bucket_name)
+            print(f"Bucket name: {bucket} created successfully ")
+            created = True
+        except Exception as e:
+            print(f"Error Creation Buckets: {str(e)}")
+
+    create_gcs_bucket(gcp_project_id,bucket_name,service_account_file)
+
+
