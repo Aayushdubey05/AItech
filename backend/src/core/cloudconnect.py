@@ -21,5 +21,3 @@ def create_gcs_bucket(gcp_project_id,bucket_name,service_account_file):
         print(f"Error Creation Buckets: {str(e)}")
 
 create_gcs_bucket(gcp_project_id,bucket_name,service_account_file)
-
-
