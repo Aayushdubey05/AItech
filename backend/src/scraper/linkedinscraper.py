@@ -13,7 +13,7 @@ import playwright
 target_url_linkedin = "https://www.linkedin.com/"
 def run(url):
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless= False)
+        browser = p.chromium.launch(headless= True)
         page = browser.new_page()
 
 
@@ -68,7 +68,7 @@ def run(url):
                     'class': job_class,
                     'link': job_href
                 })
-                
+
         else:
             print("Jobs link not found!")
 
