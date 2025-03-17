@@ -13,7 +13,7 @@ import playwright
 target_url_linkedin = "https://www.linkedin.com/"
 def run(url):
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless= True)
+        browser = p.chromium.launch(headless= False)
         page = browser.new_page()
 
 
@@ -56,14 +56,26 @@ def run(url):
 
             print(f"Total number of jobs found: {len(jobs_item)}")
 
-            # for idx, job in enumerate(jobs_item, start=1):
-            #     job_id = job.get_attribute("data-job-id")
-            #     job_title = job.query_selector(".job-card-list__title").inner_text().strip()
-            #     print(f"{idx}. Job ID: {job_id} | Job title: {job_title}")
-        
+            jobs_for_autojob = []
+            for data_reference_id in jobs_item:
+                job_class = data_reference_id.query_selector('.base-card')
+
+                #Extracting the Job links for each job 
+                job_link = data_reference_id.query_selector('a')
+                job_href = job_link.get_attribute('href') if job_link else 'No link Found'
+
+                jobs_for_autojob.append({
+                    'class': job_class,
+                    'link': job_href
+                })
+                
         else:
             print("Jobs link not found!")
+
+    return jobs_for_autojob
 # def process_url(url):
 
 
-run(target_url_linkedin)
+jobs = run(target_url_linkedin)
+for job in jobs:
+    print(f"Class: {job['class']}\nLink: {job['link']}\n{'-'*50}")
