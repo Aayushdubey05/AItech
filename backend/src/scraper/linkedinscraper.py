@@ -60,12 +60,24 @@ def run(url):
             for data_reference_id in jobs_item:
                 job_class = data_reference_id.query_selector('.base-card')
 
-                #Extracting the Job links for each job 
+                #Extracting the Job links for each job
+                # 
+                # We will Extract this following things from each job application 
+                # job_link , Job_title, Job_description, job_type, job_location , job_company  
                 job_link = data_reference_id.query_selector('a')
                 job_href = job_link.get_attribute('href') if job_link else 'No link Found'
+                job_info = data_reference_id.query_selector('.base-search-card__info')
+                job_title = job_info.query_selector('h3').inner_text()
+                company_name = job_info.query_selector('h4').inner_text()
+                job_location = job_info.query_selector('.base-search-card__metadata span').inner_text()
 
+                
                 jobs_for_autojob.append({
-                    'class': job_class,
+                    'job title': job_title,
+                    'company name': company_name,
+                    'job location': job_location,
+                    'job type': None,
+                    'job description': None,
                     'link': job_href
                 })
 
@@ -78,4 +90,5 @@ def run(url):
 
 jobs = run(target_url_linkedin)
 for job in jobs:
-    print(f"Class: {job['class']}\nLink: {job['link']}\n{'-'*50}")
+    print(f"Job Title: {job['job title']}\nCompany: {job['company name']}")
+    print(f"Job Location: {job['job location']}\nLink: {job['link']}\n")
