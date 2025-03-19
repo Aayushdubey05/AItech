@@ -4,6 +4,8 @@ from src.db.session import engine
 from src.db.base import Base 
 from src.api.create import router as signup_router# ✅ Import signup router
 from src.api.login import loginRouter
+from src.api.profile import profileRouter
+
 import uvicorn
 
 def create_tables():
@@ -18,6 +20,7 @@ def start_application():
     # Include all API routers
     app.include_router(signup_router)  # ✅ Added Signuprouter
     app.include_router(loginRouter) # Added LoginRouter
+    app.include_router(profileRouter) #Added the ProfileRouter ✅
     return app
 
 # Initialize the FastAPI app
