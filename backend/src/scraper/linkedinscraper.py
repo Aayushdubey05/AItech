@@ -88,7 +88,7 @@ def run(url):
 # def process_url(url):
 
 
-jobs = run(target_url_linkedin)
-for job in jobs:
-    print(f"Job Title: {job['job title']}\nCompany: {job['company name']}")
-    print(f"Job Location: {job['job location']}\nLink: {job['link']}\n")
+# jobs = run(target_url_linkedin)
+# for job in jobs:
+#     print(f"Job Title: {job['job title']}\nCompany: {job['company name']}")
+#     print(f"Job Location: {job['job location']}\nLink: {job['link']}\n")
