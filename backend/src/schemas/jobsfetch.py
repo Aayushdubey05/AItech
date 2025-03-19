@@ -12,7 +12,7 @@ class LinkedinJobs(BaseModel):
     CompanyName: str
     JobLocation: str
     JobDescription: str | None
-    JobTitle: str | None 
+    JobType: str | None 
     JobLink: str
 
     class Config:
