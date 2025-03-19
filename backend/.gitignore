@@ -3,3 +3,4 @@ __pycache__/
 src/core/jwtsceret.py
 database_jobportal.sql 
 src/cloud_service_api.json
+/__init__.py

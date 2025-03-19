@@ -5,8 +5,9 @@ from src.db.base import Base
 from src.api.create import router as signup_router# ✅ Import signup router
 from src.api.login import loginRouter
 from src.api.profile import profileRouter
-
+from src.middleware.autorunner import run_scripts
 import uvicorn
+import threading
 
 def create_tables():
     """Create database tables."""
@@ -31,5 +32,9 @@ def home():
     return {"data": "You are on dashboard/home page"}
 
 # Run the app with Uvicorn
+if __name__ == "__main__":
+    background_thread = threading.Thread(target=run_scripts(), daemon=True)
+    background_thread.start()
 
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
 
