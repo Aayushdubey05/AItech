@@ -1,6 +1,5 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from fastapi import FastAPI
 import os
 from pathlib import Path
 from dotenv import load_dotenv, dotenv_values
