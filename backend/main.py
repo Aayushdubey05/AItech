@@ -8,10 +8,18 @@ from src.api.profile import profileRouter
 from src.middleware.autorunner import run_scripts
 import uvicorn
 import threading
+from contextlib import contextmanager, asynccontextmanager 
 
 def create_tables():
     """Create database tables."""
     Base.metadata.create_all(bind=engine)
+
+
+@asynccontextmanager
+def lifespan(app: FastAPI):
+    print(f"Server is starting {settings.ProjectVersion}")
+    yield
+    print(f"Server goes down {settings.ProjectVersion}")
 
 def start_application():
     """Initialize FastAPI application."""
