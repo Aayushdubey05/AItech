@@ -17,14 +17,17 @@ def create_tables():
 
 
 @asynccontextmanager
-def lifespan(app: FastAPI):
+async def lifespan(app: FastAPI):
     print(f"Server is starting {settings.ProjectVersion}")
+    # background_thread = threading.Thread(target=run_scripts, daemon=True)
+    # background_thread.start()
+    # print("Background thread have being started ")
     yield
     print(f"Server goes down {settings.ProjectVersion}")
 
 def start_application():
     """Initialize FastAPI application."""
-    app = FastAPI(title=settings.ProjectName, version=settings.ProjectVersion)
+    app = FastAPI(title=settings.ProjectName, version=settings.ProjectVersion,lifespan=lifespan)
     create_tables()
 
     # Include all API routers
@@ -43,8 +46,5 @@ def home():
 
 # Run the app with Uvicorn
 if __name__ == "__main__":
-    background_thread = threading.Thread(target=run_scripts, daemon=True)
-    background_thread.start()
-
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
 
