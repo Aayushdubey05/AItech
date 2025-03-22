@@ -6,6 +6,7 @@ from src.api.create import router as signup_router# ✅ Import signup router
 from src.api.login import loginRouter
 from src.api.profile import profileRouter
 from src.middleware.autorunner import run_scripts
+from src.api.generaljobs import job_fetch_router
 import uvicorn
 import threading
 from contextlib import contextmanager, asynccontextmanager 
@@ -30,6 +31,7 @@ def start_application():
     app.include_router(signup_router)  # ✅ Added Signuprouter
     app.include_router(loginRouter) # Added LoginRouter
     app.include_router(profileRouter) #Added the ProfileRouter ✅
+    app.include_router(job_fetch_router)
     return app
 
 # Initialize the FastAPI app
@@ -41,8 +43,8 @@ def home():
 
 # Run the app with Uvicorn
 if __name__ == "__main__":
-    background_thread = threading.Thread(target=run_scripts(), daemon=True)
+    background_thread = threading.Thread(target=run_scripts, daemon=True)
     background_thread.start()
 
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
 
