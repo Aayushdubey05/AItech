@@ -24,7 +24,7 @@ class User(Base):
     email = Column(String, unique=True, index=True, nullable=False)
     password = Column(String, nullable=False)  # Change Password → password
     mobile = Column(String, nullable=False)
-    user_profile = relationship("Profile", backref=backref('user', uselist = False))
+    user_profiles = relationship("Profile", backref=backref('user', uselist = False)) #to maintain one-to-one relationship between signup and profile
 
 class Profile(Base):
     __tablename__='user_profiles'
@@ -39,3 +39,4 @@ class Profile(Base):
     resume_path = Column(String,default=None,nullable=True)
     resume_link = Column(String,default=None,nullable=True)
     profileimage = Column(Boolean,default=False) 
+    users = relationship("User", back_populates="profile") #to maintain one-to-one relationship between signup and profile

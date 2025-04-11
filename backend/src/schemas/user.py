@@ -28,3 +28,6 @@ class UserLogin(BaseModel):
     Password: str
     class Config:
         orm_mode = True
+
+# class UserProfile(BaseModel,UserCreation):
+     
