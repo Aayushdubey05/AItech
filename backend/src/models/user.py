@@ -39,4 +39,10 @@ class Profile(Base):
     resume_path = Column(String,default=None,nullable=True)
     resume_link = Column(String,default=None,nullable=True)
     profileimage = Column(Boolean,default=False) 
+    linkedin_id = Column(String,nullable=True)
+    github_id = Column(String, nullable=True)
+    Coding_profiles = Column(String,nullable=True)
+    skill_set = Column(String,nullable=True)
+    years_of_experience = Column(String,nullable=True)
+    desired_roles = Column(String,nullable=True)
     users = relationship("User", back_populates="profile") #to maintain one-to-one relationship between signup and profile
