@@ -7,6 +7,8 @@ from models.user import User
 from db.session import engine
 from pydantic import BaseModel, EmailStr 
 from core.config import settings
+from fastapi import UploadFile
+from typing import Optional
 
 class UserCreation(BaseModel):
     Name: str
@@ -31,3 +33,20 @@ class UserLogin(BaseModel):
 
 # class UserProfile(BaseModel,UserCreation):
      
+class ProfileSchema(BaseModel):
+    Name : str
+    Email : str
+    City: Optional[str]
+    States: Optional[str]
+    Country: Optional[str]
+    ResumeUploaded: bool = False
+    Resume: Optional[str]
+    ProfileImage: Optional[str]
+    LinkedinId = Optional[str]
+    GithubId = Optional[str]
+    CodingProfiles = Optional[str] 
+    SkillSet = Optional[str]
+    YearsOfExperience = Optional[int]
+    DesiredRole = Optional[str]
+
+
