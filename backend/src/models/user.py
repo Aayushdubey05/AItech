@@ -43,6 +43,6 @@ class Profile(Base):
     github_id = Column(String, nullable=True)
     Coding_profiles = Column(String,nullable=True)
     skill_set = Column(String,nullable=True)
-    years_of_experience = Column(String,nullable=True)
+    years_of_experience = Column(Integer,nullable=True)
     desired_roles = Column(String,nullable=True)
     users = relationship("User", back_populates="profile") #to maintain one-to-one relationship between signup and profile
