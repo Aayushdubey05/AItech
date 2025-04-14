@@ -24,25 +24,25 @@ class User(Base):
     email = Column(String, unique=True, index=True, nullable=False)
     password = Column(String, nullable=False)  # Change Password → password
     mobile = Column(String, nullable=False)
-    user_profiles = relationship("Profile", backref=backref('user', uselist = False)) #to maintain one-to-one relationship between signup and profile
+    profile = relationship("Profile",back_populates="user",uselist=False) #to maintain one-to-one relationship between signup and profile
 
 class Profile(Base):
     __tablename__='user_profiles'
     id = Column(Integer,primary_key=True,index=True)
     user_id = Column(Integer,ForeignKey("users.id"))
-    name = Column(String,nullable=False)
-    email = Column(String,unique=True,index=True, nullable=False)
-    city = Column(String,nullable=True)
-    states = Column(String,nullable=True)
-    country = Column(String, nullable=False) 
+    name = Column(String(255),nullable=False)
+    email = Column(String(255),unique=True,index=True, nullable=False)
+    city = Column(String(255),nullable=True)
+    states = Column(String(255),nullable=True)
+    country = Column(String(255), nullable=True) 
     resumeUploaded = Column(Boolean,default=False)
-    resume_path = Column(String,default=None,nullable=True)
-    resume_link = Column(String,default=None,nullable=True)
-    profileimage = Column(Boolean,default=False) 
-    linkedin_id = Column(String,nullable=True)
-    github_id = Column(String, nullable=True)
-    Coding_profiles = Column(String,nullable=True)
-    skill_set = Column(String,nullable=True)
+    resume_path = Column(String(255),default=None,nullable=True)
+    resume_link = Column(String(255),default=None,nullable=True)
+    profileimage = Column(Boolean(255),default=False) 
+    linkedin_id = Column(String(255),nullable=True)
+    github_id = Column(String(255), nullable=True)
+    Coding_profiles = Column(String(255),nullable=True)
+    skill_set = Column(String(255),nullable=True)
     years_of_experience = Column(Integer,nullable=True)
-    desired_roles = Column(String,nullable=True)
-    users = relationship("User", back_populates="profile") #to maintain one-to-one relationship between signup and profile
+    desired_roles = Column(String(255),nullable=True)
+    user = relationship("User", back_populates="profile") #to maintain one-to-one relationship between signup and profile
