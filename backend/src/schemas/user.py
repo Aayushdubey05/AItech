@@ -36,17 +36,21 @@ class UserLogin(BaseModel):
 class ProfileSchema(BaseModel):
     Name : str
     Email : str
-    City: Optional[str]
-    States: Optional[str]
-    Country: Optional[str]
-    ResumeUploaded: bool = False
-    Resume: Optional[str]
-    ProfileImage: Optional[str]
-    LinkedinId = Optional[str]
-    GithubId = Optional[str]
-    CodingProfiles = Optional[str] 
-    SkillSet = Optional[str]
-    YearsOfExperience = Optional[int]
-    DesiredRole = Optional[str]
+    City: Optional[str] = None
+    States: Optional[str] = None
+    Country: Optional[str] = None
+    ResumeUploaded: bool = False 
+    Resume: Optional[UploadFile] = None
+    ProfileImage: Optional[str] = None
+    LinkedinId : Optional[str] = None
+    GithubId : Optional[str] = None
+    CodingProfiles : Optional[str] = None 
+    SkillSet : Optional[str] = None
+    YearsOfExperience : Optional[int] = None
+    DesiredRole : Optional[str] = None
 
-
+    class Config: 
+        orm_mode = True
+        model_config = {
+            "form_attributes": True
+        }
